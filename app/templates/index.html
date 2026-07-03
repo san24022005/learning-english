@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ Flask</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f4;}
+        .card { background: rgba(255, 255, 255, 0.358); padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Chào mừng đến với Website Flask hoàn chỉnh!</h1>
+        <p>Xin chào: <strong>{{ data.username }}</strong></p>
+        <p>Chức vụ: <em>{{ data.role }}</em></p>
+
+        <h3>Kỹ năng của bạn:</h3>
+        <ul>
+            {% for skill in data.skills %}
+                <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
