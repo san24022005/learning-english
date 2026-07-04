@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+input { 
+    padding: 10px;
+    font-size: 18px;
+    text-transform: lowercase; 
+}
+
+button { 
+    padding: 10px 20px; 
+    font-size: 18px; 
+    cursor: pointer; 
+}

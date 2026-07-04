@@ -1,0 +1,18 @@
+ .scrambled { 
+    font-size: 30px; 
+    letter-spacing: 5px; 
+    color: #d35400; 
+    font-weight: bold; 
+}
+        
+.meaning { 
+    font-size: 20px; 
+    color: #7f8c8d; 
+    margin-bottom: 20px; 
+}
+        
+#result { 
+    margin-top: 20px; 
+    font-weight: bold; 
+    font-size: 18px; 
+}

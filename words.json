@@ -1,0 +1,6 @@
+[
+    {"id": 1, "word": "apple", "meaning": "Quả táo"},
+    {"id": 2, "word": "banana", "meaning": "Quả chuối"},
+    {"id": 3, "word": "orange", "meaning": "Quả cam"},
+    {"id": 4, "word": "developer", "meaning": "Lập trình viên"}
+]

@@ -2,27 +2,30 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Chủ Flask</title>
+    <title>Game Xáo Trộn Từ Vựng</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/main.css">
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f4;}
-        .card { background: rgba(255, 255, 255, 0.358); padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        .scrambled { font-size: 30px; letter-spacing: 5px; color: #d35400; font-weight: bold; }
+        .meaning { font-size: 20px; color: #7f8c8d; margin-bottom: 20px; }
+        #result { margin-top: 20px; font-weight: bold; font-size: 18px; }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h1>Chào mừng đến với Website Flask hoàn chỉnh!</h1>
-        <p>Xin chào: <strong>{{ data.username }}</strong></p>
-        <p>Chức vụ: <em>{{ data.role }}</em></p>
+    <h1>Sắp Xếp Lại Từ Vựng</h1>
+    
+    <div class="meaning">Nghĩa: <span id="word-meaning">Đang tải...</span></div>
+    <div class="scrambled" id="word-scrambled">...</div>
+    
+    <br>
+    <input type="text" id="user-input" placeholder="Gõ từ của bạn vào đây..." autocomplete="off">
+    <button onclick="checkAnswer()">Kiểm tra</button>
+    <button onclick="loadNewWord()">Từ mới</button>
 
-        <h3>Kỹ năng của bạn:</h3>
-        <ul>
-            {% for skill in data.skills %}
-                <li>{{ skill }}</li>
-            {% endfor %}
-        </ul>
-    </div>
+    <div id="result"></div>
 
+    <script src="../static/js/load-words.js"></script>
 </body>
 </html>
