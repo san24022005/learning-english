@@ -1,4 +1,3 @@
-#%%
 from flask import Flask
 from config import Config
 
@@ -14,4 +13,3 @@ def create_app():
     app.register_blueprint(main_bp)
 
     return app
-# %%

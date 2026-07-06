@@ -36,4 +36,4 @@ async function checkAnswer() {
 }
 
 // Tự động tải từ đầu tiên khi mở web
-window.onload = loadNewWord;
+window.onload = loadNewWord; 
