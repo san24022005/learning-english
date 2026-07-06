@@ -10,25 +10,25 @@ Thông qua quá trình phát triển dự án, không chỉ nâng cao vốn từ
 ---
 
 ## 📌 Mục lục
-1. [Tính năng nổi bật](#-tính-năng-nổi-bật)
-2. [Kiến trúc hệ thống](#-kiến-trúc-hệ-thống)
-3. [Công nghệ sử dụng](#-công-nghệ-sử-dụng)
-4. [Yêu cầu hệ thống](#-yêu-cầu-hệ-thống)
-5. [Hướng dẫn cài đặt nhanh](#-hướng-dẫn-cài-đặt-nhanh)
-6. [Hướng dẫn sử dụng & Kiểm thử](#-hướng-dẫn-sử-dụng--kiểm-thử)
-7. [Tài liệu liên quan](#-tài-liệu-liên-quan)
-8. [Quy định đóng góp (Contributing)](#-quy-định-đóng-góp-contributing)
-9. [Tác giả & Bản quyền](#-tác-giả--bản-quyền)
+1. [Tính năng nổi bật](#tinh-nang-noi-bat)
+2. [Kiến trúc hệ thống](#kien-truc-he-thong)
+3. [Công nghệ sử dụng](#cong-nghe-su-dung)
+4. [Yêu cầu hệ thống](#yeu-cau-he-thong)
+5. [Hướng dẫn cài đặt nhanh](#huong-dan-cai-dat-nhanh)
+6. [Hướng dẫn sử dụng & Kiểm thử](#huong-dan-su-dung-kiem-thu)
+7. [Tài liệu liên quan](#tai-lieu-lien-quan)
+8. [Quy định đóng góp (Contributing)](#quy-dinh-dong-gop-contributing)
+9. [Tác giả & Bản quyền](#tac-gia-ban-quyen)
 
 ---
 
-## ✨ Tính năng nổi bật
+## ✨ Tính năng nổi bật <a id="tinh-nang-noi-bat"></a>
 Với cách học là cho ngẫu nhiên cách từ tiếng Anh, trang web cho ra những tính năng nổi bật:
 * **Tính năng 1**: Trộn ngẫu nhiên các từ tiếng Anh
 
 ---
 
-## 📐 Kiến trúc hệ thống
+## 📐 Kiến trúc hệ thống <a id="kien-truc-he-thong"></a>
 > [!NOTE]
 > Dự án sử dụng mô hình Clean Architecture để tách biệt Business Logic và Giao diện.
 
@@ -42,7 +42,32 @@ graph TD
 ```
 ---
 
-## 📚 Tài liệu liên quan
+## 🛠️ Công nghệ sử dụng <a id="cong-nghe-su-dung"></a>
+Danh sách công nghệ chính được sử dụng trong dự án.
+
+---
+
+## 🖥️ Yêu cầu hệ thống <a id="yeu-cau-he-thong"></a>
+Thông tin cấu hình và yêu cầu cơ bản để chạy dự án.
+
+---
+
+## 📦 Hướng dẫn cài đặt nhanh <a id="huong-dan-cai-dat-nhanh"></a>
+Hướng dẫn cài đặt nhanh phần mềm và môi trường phát triển.
+
+---
+
+## 🧪 Hướng dẫn sử dụng & Kiểm thử <a id="huong-dan-su-dung-kiem-thu"></a>
+Hướng dẫn sử dụng chức năng và cách kiểm thử hệ thống.
+
+---
+
+## 🤝 Quy định đóng góp (Contributing) <a id="quy-dinh-dong-gop-contributing"></a>
+Hướng dẫn cách đóng góp và quy định chung.
+
+---
+
+## 📚 Tài liệu liên quan <a id="tai-lieu-lien-quan"></a>
 
 [1] 3000 từ Tiếng Anh thông dụng, https://english4u.com.vn/Uploads/files/3000.pdf
 
@@ -56,7 +81,7 @@ graph TD
 
 ---
 
-## 👨‍💻 Tác giả & Bản quyền
+## 👨‍💻 Tác giả & Bản quyền <a id="tac-gia-ban-quyen"></a>
 
 Siu San
 
