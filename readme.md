@@ -1,6 +1,6 @@
-# learning-english
+# Learning English 
 
-Phiên bản: 1.0
+Phiên bản: 1.2.1
 
 ---
 
@@ -140,6 +140,11 @@ CORS(app)
 
 - Để thêm API mới, tạo file mới trong `app/api` và khai báo Blueprint, sau đó `app.register_blueprint()` trong `create_app()` (`app/__init__.py`).
 - Khi dự án lớn hơn, cân nhắc dùng database (SQLite/Postgres) thay vì file JSON.
+- Dự án đã có thêm 3 thư mục mới cho hướng phát triển AI/ML:
+  - `tests/` — chứa các bài kiểm thử đơn giản cho mô hình.
+  - `data/` — nơi lưu dữ liệu huấn luyện và dữ liệu chuẩn bị.
+  - `preprocessing/` — chứa mô hình và tiền xử lý dữ liệu đơn giản.
+- Endpoint mới: `GET /api/recommend` dùng mô hình AI nhẹ để gợi ý từ phù hợp với mức độ học viên.
 
 ---
 
@@ -161,12 +166,9 @@ curl -X POST http://localhost:5000/api/check -H "Content-Type: application/json"
 - Tác giả: Siu San
 - Email: siusan2005@gmail.com
 
-Nếu bạn muốn tôi giữ lại thông tin khác (SĐT, mã sinh viên), hãy cho biết và tôi sẽ thêm lại vào README trong phần tác giả.
-
 ---
 
 ## **License**
 
-Miễn cấp phép: bạn có thể dùng mã nguồn cho mục đích học tập. Nếu muốn công khai hay dùng cho mục đích thương mại, hãy chỉ rõ license (ví dụ MIT).
 
 

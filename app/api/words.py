@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 import random
 
 from app.data import get_words_data
+from preprocessing.model import predict_difficulty, recommend_word
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
 
@@ -45,3 +46,19 @@ def check_answer():
     if user_answer == correct['word'].lower():
         return jsonify({'is_correct': True, 'message': 'Chính xác! Bạn thật tuyệt vời!'})
     return jsonify({'is_correct': False, 'message': f"Sai rồi. Đáp án đúng là: {correct['word']}"})
+
+
+@api_bp.route('/recommend', methods=['GET'])
+def recommend_words():
+    level = request.args.get('level', 'medium').strip().lower()
+    words = get_words_data()
+    recommended = recommend_word(words, level)
+    if not recommended:
+        return jsonify({'error': 'No words available'}), 404
+
+    difficulty = predict_difficulty(recommended['word'])
+    return jsonify({
+        'recommended_word': recommended,
+        'predicted_difficulty': difficulty,
+        'level': level
+    })
