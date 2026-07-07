@@ -12,4 +12,8 @@ def create_app():
     from app.routes import main_bp
     app.register_blueprint(main_bp)
 
+    # Đăng ký API blueprint
+    from app.api.words import api_bp
+    app.register_blueprint(api_bp)
+
     return app

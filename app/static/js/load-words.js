@@ -1,39 +1,44 @@
-let currentWordId = null;
+﻿let currentWord = null;
+const API_BASE = '/api';
 
-// Hàm gọi API lấy từ mới từ Flask
 async function loadNewWord() {
     document.getElementById('user-input').value = '';
     document.getElementById('result').innerText = '';
-    
-    const response = await fetch('/api/get-quiz');
-    const data = await response.json();
-    
-    currentWordId = data.id;
-    document.getElementById('word-meaning').innerText = data.meaning;
-    document.getElementById('word-scrambled').innerText = data.scrambled.toUpperCase();
+    const response = await fetch(`${API_BASE}/words`);
+    const words = await response.json();
+    const randomIndex = Math.floor(Math.random() * words.length);
+    currentWord = words[randomIndex];
+
+    document.getElementById('word-meaning').innerText = currentWord.meaning;
+    document.getElementById('word-scrambled').innerText = shuffleWord(currentWord.word).toUpperCase();
 }
 
-// Hàm gửi câu trả lời lên Flask kiểm tra
-async function checkAnswer() {
-    const userAnswer = document.getElementById('user-input').value;
-    
-    const response = await fetch('/api/check-answer', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: currentWordId, answer: userAnswer })
-    });
-    
-    const data = await response.json();
+function shuffleWord(word) {
+    const chars = word.split('');
+    for (let i = chars.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [chars[i], chars[j]] = [chars[j], chars[i]];
+    }
+    return chars.join('');
+}
+
+function checkAnswer() {
+    const userAnswer = document.getElementById('user-input').value.trim().toLowerCase();
     const resultDiv = document.getElementById('result');
-    
-    if(data.is_correct) {
-        resultDiv.style.color = "green";
-        resultDiv.innerText = data.message;
+
+    if (!currentWord) {
+        resultDiv.style.color = 'red';
+        resultDiv.innerText = 'Chưa có từ nào để kiểm tra. Vui lòng nhấn Từ mới.';
+        return;
+    }
+
+    if (userAnswer === currentWord.word.toLowerCase()) {
+        resultDiv.style.color = 'green';
+        resultDiv.innerText = 'Chính xác! Bạn thật tuyệt vời!';
     } else {
-        resultDiv.style.color = "red";
-        resultDiv.innerText = data.message;
+        resultDiv.style.color = 'red';
+        resultDiv.innerText = `Sai rồi. Đáp án đúng là: ${currentWord.word}`;
     }
 }
 
-// Tự động tải từ đầu tiên khi mở web
-window.onload = loadNewWord; 
+window.onload = loadNewWord;

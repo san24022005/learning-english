@@ -1,0 +1,123 @@
+.login__header {
+    margin-bottom: 20px;
+    height: 100px;
+    border-bottom: 2px solid #ccc;
+    padding-left: 100px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.header__logo img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.header__title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin: 0 20px;
+    align-self: center;
+}
+
+.login__container {
+    width: 95%;
+    min-height: 650px;
+    margin: 0 auto;
+    padding: 10px;
+    background-image: url('../images/logo-2.png');
+    background-repeat: no-repeat;
+    border-radius: 5px;
+}
+
+.login__form {
+    float: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+    width: 40%;
+    background-color: #f9f9f9;
+    box-shadow: 6px 9px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    opacity: 0.95;
+    padding: 20px;
+    margin-right: 100px;
+    border: 1px solid #ccc;
+}
+
+.login__form h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.login__form h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.form__group {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form__group label {
+    margin-bottom: 5px;
+    color: #000;
+    font-size: 16px;
+}
+
+.form__group input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form__submit {
+    width: 100%;
+    background-color: #3450db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    opacity: 1;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 10px 0;
+}
+
+.login__social {
+    text-align: center;
+}
+
+.login__social p {
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.login__so-icon {
+    margin-bottom: 15px;
+}
+
+.login__so-icon a {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+
+.login__so-icon img {
+    width: 30px;
+    height: 30px;
+}
