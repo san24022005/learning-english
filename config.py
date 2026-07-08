@@ -1,5 +1,10 @@
 import os
-from dotenv import load_dotenv
+
+try:
+    from dotenv import load_dotenv
+except ImportError:  # pragma: no cover - fallback when dependency is unavailable
+    def load_dotenv():
+        return False
 
 # Tải các biến môi trường từ file .env
 load_dotenv()

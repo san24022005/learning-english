@@ -1,8 +1,12 @@
+from pathlib import Path
+
 from flask import Flask
 from config import Config
 
+
 def create_app():
-    app = Flask(__name__)
+    base_dir = Path(__file__).resolve().parent
+    app = Flask(__name__, template_folder=str(base_dir / "templates"), static_folder=str(base_dir / "static"))
 
     # Nạp cấu hình từ file config.py vào app
     app.config.from_object(Config)

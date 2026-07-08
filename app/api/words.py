@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 import random
 
 from app.data import get_words_data
-from preprocessing.model import predict_difficulty, recommend_word
+from ml.preprocessing import predict_difficulty, recommend_word
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
 
