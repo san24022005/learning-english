@@ -2,7 +2,7 @@ import os
 import tempfile
 import unittest
 
-from ml.preprocessing import build_vocab_dataframe, parse_vocab_line, simplify_meaning
+from ml.main import build_vocab_dataframe, parse_vocab_line, simplify_meaning
 
 
 class VocabularyPreprocessingTest(unittest.TestCase):

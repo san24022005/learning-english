@@ -1,36 +1,45 @@
 .login__header {
-    margin-bottom: 20px;
-    height: 100px;
-    border-bottom: 2px solid #ccc;
-    padding-left: 100px;
+    margin-bottom: 2rem;
+    height: 10rem;
+    border-bottom: 0.2rem solid #ccc;
+    padding-left: 10rem;
     display: flex;
     justify-content: left;
     align-items: center;
 }
 
 .header__logo img {
-    width: 100px;
-    height: 100px;
+    width: 10rem;
+    height: 10rem;
     border-radius: 50%;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
 }
 
 .header__title {
-    font-size: 24px;
+    font-size: 2.4rem;
     font-weight: bold;
     color: #333;
-    margin: 0 20px;
+    margin: 0 2rem;
     align-self: center;
 }
 
-.login__container {
+.auth__container {
     width: 95%;
-    height: 500px;
+    height: 65rem;
     margin: 0 auto;
-    padding: 10px;
-    background-image: url('../images/logo-2.png');
-    background-repeat: no-repeat;
-    border-radius: 5px;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.login__container {
+    height: 65rem;
+}
+
+.register__container {
+    height: 75rem;
 }
 
 .login__form {
@@ -41,55 +50,71 @@
     height: 100%;
     width: 35%;
     background-color: #f9f9f9;
-    box-shadow: 6px 9px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    box-shadow: 0.6rem 0.9rem 1.2rem rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
     opacity: 0.9;
-    padding: 20px;
-    margin-right: 100px;
-    border: 1px solid #ccc;
+    padding: 2rem;
+    border: 0.1rem solid #ccc;
 }
 
 .login__form h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
     color: #000;
 }
 
 .login__form h3 {
-    font-size: 18px;
-    margin-bottom: 20px;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
     color: #000;
 }
 
 .form__group {
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
     display: flex;
     flex-direction: column;
 }
 
 .form__group label {
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
     color: #000;
-    font-size: 16px;
+    font-size: 1.6rem;
 }
 
 .form__group input {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 1rem;
+    font-size: 1.6rem;
+    border: 0.1rem solid #ccc;
+    border-radius: 0.5rem;
 }
 
 .form-support {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
+}
+
+.form__remeber {
+    display: flex;
+    align-items: center;
 }
 
 .form__remeber input[type="checkbox"] {
-    margin-left: 5px;
-    width: 20px;
+    margin-left: 0.5rem;
+    width: 2rem;
+}
+
+.form__remeber label {
+    font-size: 1.4rem;
+    color: #000;
+}
+
+.form__forgot a {
+    color: #3450db;
+    font-size: 1.4rem;
+    display: inline-block;
+    line-height: 2rem;
 }
 
 .form__submit {
@@ -97,39 +122,55 @@
     background-color: #3450db;
     color: white;
     border: none;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 0.5rem;
     opacity: 1;
     font-weight: bold;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
 }
 
 .login__social {
     text-align: center;
 }
 
-.login__social p {
-    margin-bottom: 10px;
+.socail__title {
+    margin-bottom: 1rem;
     color: #000;
+    font-size: 1.4rem;
 }
 
 .login__so-icon {
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
 }
 
 .login__so-icon a {
     display: inline-block;
-    margin: 0 5px;
-    padding: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 0.5rem;
+    padding: 0.5rem;
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
     border-radius: 50%;
-    border: 1px solid #ccc;
+    border: 0.1rem solid #ccc;
 }
 
 .login__so-icon img {
-    width: 30px;
-    height: 30px;
+    width: 3rem;
+    height: 3rem;
+}
+
+.login__register p {
+    font-size: 1.4rem;
+    color: #000;
+}
+
+.register__link, .login__link {
+    color: #3450db;
+}
+
+.register__link:hover,
+.login__link:hover,
+.form__forgot a:hover {
+    text-decoration: underline;
 }
