@@ -18,7 +18,7 @@ nonContentWords = {
     "in", "on", "at", "by", "with", "about", "for", "of", "and",
 }
 
-df = pd.read_csv("data.csv")
+df = pd.read_csv("./data.csv")
 
 index_to_remove = []
 

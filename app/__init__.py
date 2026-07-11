@@ -1,8 +1,6 @@
 from pathlib import Path
-
 from flask import Flask
 from config import Config
-
 
 def create_app():
     base_dir = Path(__file__).resolve().parent
