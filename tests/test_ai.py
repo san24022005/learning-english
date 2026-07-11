@@ -1,6 +1,6 @@
 import unittest
 
-from ml.preprocessing import predict_difficulty, recommend_word
+from ml.main import predict_difficulty, recommend_word
 
 
 class AITestCase(unittest.TestCase):
