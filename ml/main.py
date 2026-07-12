@@ -1,60 +1,57 @@
 import os
+import torch
 import pandas as pd
-import random
+from tqdm import tqdm
 
-# Utility: determine difficulty by simple heuristics
-def predict_difficulty(word: str) -> str:
-    s = (word or '').strip()
-    l = len(s)
-    if l == 0:
-        return 'unknown'
-    if l <= 5:
-        return 'easy'
-    if l >= 10:
-        return 'hard'
-    return 'medium'
+# KẾ THỪA CODE: Gọi trực tiếp các class xử lý từ 2 file mô-đun phía trên
+from cefr_classifier import CEFRModel
+from topic_classifier import TopicModel
 
+# 1. Cấu hình đường dẫn
+INPUT_FILE = "vocab.csv"
+OUTPUT_FILE = "../words.json"
+COLUMN_NAME = "Word"
 
-def recommend_word(words: list, level: str):
-    """Return a recommended word dict from a list based on desired level.
+if not os.path.exists(INPUT_FILE):
+    raise FileNotFoundError(f"Không tìm thấy file dữ liệu đầu vào '{INPUT_FILE}'")
 
-    `words` is expected to be a list of dicts with a `word` key.
-    """
-    if not words:
-        return None
-    level = (level or '').strip().lower()
-    candidates = [w for w in words if predict_difficulty(w.get('word', '')) == level]
-    if candidates:
-        return random.choice(candidates)
-    return random.choice(words)
+# 2. Đọc file CSV dữ liệu gốc
+df = pd.read_csv(INPUT_FILE)
+device = 0 if torch.cuda.is_available() else -1
 
+# 3. Khởi tạo 2 mô hình bằng cách tái sử dụng code đã import
+cefr_ai = CEFRModel(device=device)
+topic_ai = TopicModel(device=device)
 
-# Optional spaCy helper (lazy import to avoid heavy imports at module import time)
-_nlp = None
-def get_root_word_spacy(word: str) -> str:
-    global _nlp
-    try:
-        if _nlp is None:
-            import spacy
-            _nlp = spacy.load('en_core_web_sm')
-        doc = _nlp((word or '').strip())
-        return doc[0].lemma_ if doc and len(doc) > 0 else ''
-    except Exception:
-        return ''
+# 4. Khởi tạo các danh sách lưu kết quả
+cefr_levels, cefr_scores = [], []
+predicted_topics, topic_scores = [], []
 
-
-if __name__ == '__main__':
-    # When run as script, optionally inspect the CSV and print simple results.
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(BASE_DIR, 'vocab.csv')
-    if os.path.exists(file_path):
-        df = pd.read_csv(file_path)
-        mismatches = []
-        for _, row in df.iterrows():
-            if row.get('Word') != row.get('Root_Word'):
-                mismatches.append((row.get('Word'), row.get('Root_Word')))
-        for w, r in mismatches:
-            print(f"Word: {w}, Root_Word: {r}")
-        print(f"Total mismatches found: {len(mismatches)}")
+print("\n--- Bắt đầu chạy tích hợp (Sử dụng code thừa kế từ 2 file mô-đun) ---")
+for item in tqdm(df[COLUMN_NAME], desc="Đang xử lý song song"):
+    text_input = str(item).strip()
+    
+    if text_input and text_input != "nan":
+        # Gọi hàm xử lý của file cefr_classifier.py
+        lvl, c_scr = cefr_ai.predict(text_input)
+        cefr_levels.append(lvl)
+        cefr_scores.append(c_scr)
+        
+        # Gọi hàm xử lý của file topic_classifier.py
+        tpc, t_scr = topic_ai.predict(text_input)
+        predicted_topics.append(tpc)
+        topic_scores.append(t_scr)
     else:
-        print('vocab.csv not found in ml/ (skipping CSV checks)')
+        cefr_levels.append("Unknown")
+        cefr_scores.append(0.0)
+        predicted_topics.append("Unknown")
+        topic_scores.append(0.0)
+
+# 5. Gộp kết quả và xuất ra JSON
+df['cefr_level'] = cefr_levels
+df['cefr_confidence'] = cefr_scores
+df['related_topic'] = predicted_topics
+df['topic_confidence'] = topic_scores
+
+df.to_json(OUTPUT_FILE, orient='records', force_ascii=False, indent=4)
+print(f"\n Hoàn thành chạy file tích hợp! Kết quả lưu tại: '{OUTPUT_FILE}'")
