@@ -88,4 +88,8 @@ def get_root_word_spacy(word: str) -> str:
 
 df["Root_Word"] = df["Word"].apply(get_root_word_spacy)
 
+df = df.reset_index(drop=True)
+
+df.insert(0, 'id', df.index + 1)
+
 df.to_csv("../ml/vocab.csv", index=False)
