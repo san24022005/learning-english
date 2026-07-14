@@ -92,4 +92,6 @@ df = df.reset_index(drop=True)
 
 df.insert(0, 'id', df.index + 1)
 
+df['Count'] = df['Word'].apply(len)
+
 df.to_csv("../ml/vocab.csv", index=False)

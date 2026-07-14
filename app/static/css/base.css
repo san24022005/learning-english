@@ -1,15 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Sriracha&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
 :root {
     --primary: #ee4d2d;
     --primary-dark: #d73211;
-    --secondary: #f5f5f5;
+    --secondary: #fff1f1;
     --text: #222;
-    --muted: #888;
+    --muted: #ddd;
     --white: #fff;
     --success: #16a34a;
     --danger: #ef4444;
-    --font-sans: "Helvetica Neue", Arial, sans-serif;
+    --font-sans: "Quicksand", sans-serif;
     --color-text-mall-homepage: #d0011b;
     --text-color-red: #ee4d2d;
+    --gold: #FFD700;
 }
 
 /* Reset cơ bản */
@@ -88,3 +92,6 @@ ul {
     transform: translateY(-50%) scale(2);
 }
 
+.hidden {
+    display: none; 
+}

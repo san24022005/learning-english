@@ -53,5 +53,6 @@ df['cefr_confidence'] = cefr_scores
 df['related_topic'] = predicted_topics
 df['topic_confidence'] = topic_scores
 
-df.to_json(OUTPUT_FILE, orient='records', force_ascii=False, indent=4)
-print(f"\n Hoàn thành chạy file tích hợp! Kết quả lưu tại: '{OUTPUT_FILE}'")
+OUTPUT_FILE = 'words.csv'  # Đổi tên file xuất ra CSV
+
+df.to_csv(OUTPUT_FILE, index=False, encoding='utf-8-sig')

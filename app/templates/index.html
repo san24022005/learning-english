@@ -1,32 +1,20 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Xáo Trộn Từ Vựng</title>
+    <title>Learning English</title>
     <link rel="stylesheet" href="../static/css/base.css">
     <link rel="stylesheet" href="../static/css/main.css">
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        .scrambled { font-size: 30px; letter-spacing: 5px; color: #d35400; font-weight: bold; }
-        .meaning { font-size: 20px; color: #7f8c8d; margin-bottom: 20px; }
-        #result { margin-top: 20px; font-weight: bold; font-size: 18px; }
-    </style>
+    <link rel="stylesheet" href="../static/fonts/\themify-icons/themify-icons.css">
+    <link rel="icon" type="image/png" href="../static/images/logo.png">
 </head>
 <body>
+    <div id="navbar" class="navbar--sticky">
 
-    <h1>Sắp Xếp Lại Từ Vựng</h1>
+    </div>
     
-    <div class="meaning">Nghĩa: <span id="word-meaning">Đang tải...</span></div>
-    <div class="scrambled" id="word-scrambled">...</div>
-    
-    <br>
-    <input type="text" id="user-input" placeholder="Gõ từ của bạn vào đây..." autocomplete="off">
-    <button onclick="checkAnswer()">Kiểm tra</button>
-    <button onclick="loadNewWord()">Từ mới</button>
 
-    <div id="result"></div>
-
-    <script src="../static/js/load-words.js"></script>
+    <script src="../static/js/load-navbar.js"></script>
 </body>
 </html>

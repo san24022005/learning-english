@@ -1,18 +1,137 @@
- .scrambled { 
-    font-size: 30px; 
-    letter-spacing: 5px; 
-    color: #d35400; 
-    font-weight: bold; 
+#navbar {
+    height: 6.5rem;
+    border-bottom: 0.1rem solid var(--muted);
+    z-index: 100;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
 }
-        
-.meaning { 
-    font-size: 20px; 
-    color: #7f8c8d; 
-    margin-bottom: 20px; 
+
+.navbar--sticky {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
 }
-        
-#result { 
-    margin-top: 20px; 
-    font-weight: bold; 
-    font-size: 18px; 
+
+.navbar__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar__logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navbar__logo img {
+    width: 6rem;
+    height: 6rem;
+}
+
+.navbar__logo h3 {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.navbar__navigation {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav__item a {
+    display: block;
+    line-height: 6.5rem;
+    padding: 0 1rem;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    color: var(--text);
+    font-weight: 600;
+    text-shadow: 0.05rem 0.05rem 0.05rem #333;
+}
+
+.navbar__auth {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-right: 3rem;
+}
+
+.auth__group {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    height: 6.5rem;
+}
+
+.auth__item {
+    display: inline-block;
+    align-items: center;
+}
+
+.auth__item a {
+    font-size: 1.4rem;
+}
+
+.navbar__icon {
+    font-size: 1.3rem;
+}
+
+.setting, .profile {
+    display: inline-flex; /* Sử dụng inline-flex thay vì inline-block */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center;     /* Căn giữa theo chiều dọc */
+    box-shadow: 0.2rem 0.2rem 0.4rem rgba(0, 0, 0, 0.5);
+}
+
+.setting {
+    border-top: 1px solid rgba(88, 88, 88, 0.3);
+    border-left: 1px solid rgba(88, 88, 88, 0.3);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: .3rem;
+    background-color: #333;
+    color: var(--white);
+}
+
+.profile {
+    border: 2px solid var(--gold);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+}
+
+.profile img {
+    width: 100%;
+}
+
+.username, .logout__container {
+    height: 3.25rem;
+    padding: 0 1rem;
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.username {
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: "Sriracha", cursive;
+}
+
+.logout-btn {
+    display: block;
+    line-height: 2rem;
+}
+
+.btn-auth:hover {
+    text-decoration: underline;
+}
+
+.active a {
+    color: var(--gold);
+    background-image: linear-gradient(180deg, var(--white), var(--muted));
 }
