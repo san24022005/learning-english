@@ -27,7 +27,7 @@ def create_app():
 
     # Đăng ký API blueprint (nếu có)
     try:
-        from app.api.words import api_bp
+        from app.api.lesson import api_bp
         app.register_blueprint(api_bp)
     except ImportError:
         pass

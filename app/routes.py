@@ -15,6 +15,10 @@ def get_db():
     from app import mysql
     return mysql
 
+@main_bp.route('/index')
+def home():
+    return render_template('index.html')
+
 @main_bp.route('/')
 def index():
     # KIỂM TRA SESSION: Nếu chưa đăng nhập thì bắt quay lại trang login
@@ -90,3 +94,20 @@ def register():
             
         cursor.close()
     return render_template('register.html', msg=msg)
+
+@main_bp.route('/navbar.html')
+def navbar():
+    # Flask sẽ tìm file navbar.html trong thư mục 'templates' và trả về cho JavaScript
+    return render_template('navbar.html')
+
+@main_bp.route('/about')
+def about():
+    return render_template('about.html')
+
+@main_bp.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@main_bp.route('/history')
+def history():
+    return render_template('history.html')

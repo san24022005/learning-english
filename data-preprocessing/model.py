@@ -35,6 +35,10 @@ for index, row in df.iterrows():
     if re.search(r'[()]', row["Word"]):
         index_to_remove.append(index)
         continue
+        
+    if isinstance(row["Word"], str) and ' ' in row["Word"]:
+        index_to_remove.append(index)
+        continue
 
 df = df.drop(index_to_remove)
 

@@ -37,20 +37,35 @@
 }
 
 .navbar__navigation {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+    position: relative;
+}
+
+.nav__item {
+    display: inline-block;
+    padding: 0 1rem;
 }
 
 .nav__item a {
     display: block;
-    line-height: 6.5rem;
+    line-height: 6rem;
     padding: 0 1rem;
     font-size: 1.8rem;
     text-transform: uppercase;
     color: var(--text);
     font-weight: 600;
     text-shadow: 0.05rem 0.05rem 0.05rem #333;
+    opacity: 0.6;
+    color: var(--e-purple);
+}
+
+.nav__line {
+    position: relative;
+    background-color: var(--e-purple);
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0.5rem;
+    border-radius: 1.5rem;
 }
 
 .navbar__auth {
@@ -132,6 +147,5 @@
 }
 
 .active a {
-    color: var(--gold);
-    background-image: linear-gradient(180deg, var(--white), var(--muted));
+    opacity: 1;
 }
