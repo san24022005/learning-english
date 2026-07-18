@@ -25,7 +25,7 @@ def create_app():
     from app.routes import main_bp
     app.register_blueprint(main_bp)
 
-    # Đăng ký API blueprint (nếu có)
+    # Đăng ký API blueprint từ lesson.py
     try:
         from app.api.lesson import api_bp
         app.register_blueprint(api_bp)

@@ -1,0 +1,45 @@
+#lessons-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.lesson-block {
+    margin-bottom: 2rem;
+    border: 0.1rem solid #333;
+    border-radius: 1.5rem;
+    padding: 2rem 1rem 1rem;
+} 
+
+.lesson__title {
+    padding-bottom: 2rem;
+    font-size: 2.4rem;
+}
+
+.lesson__container {
+    display: none;
+}
+
+.lesson__container.active {
+    display: flex;
+}
+
+.lesson__main {
+    flex: 1;
+}
+
+.lesson_words {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 8px;        
+    margin-top: 10px;
+    width: 40rem;
+}
+
+.lesson__word {
+    background-color: #f0f2f5;
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+}

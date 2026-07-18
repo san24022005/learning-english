@@ -149,3 +149,8 @@
 .active a {
     opacity: 1;
 }
+
+#info {
+    margin-top: 6.5rem;
+    height: 10rem;
+}
