@@ -80,6 +80,9 @@
     gap: 1rem;
     align-items: center;
     height: 6.5rem;
+    padding-left: 1rem;
+    border-left: 0.1rem solid #333;
+    border-radius: 1.5rem;
 }
 
 .auth__item {
@@ -124,11 +127,10 @@
 }
 
 .username, .logout__container {
-    height: 3.25rem;
+    height: 2.5rem;
     padding: 0 1rem;
     align-items: center;
     display: flex;
-    justify-content: flex-end;
 }
 
 .username {

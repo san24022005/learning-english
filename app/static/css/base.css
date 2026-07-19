@@ -16,6 +16,7 @@
     --gold: #FFD700;
     --plum: #673147;
     --e-purple: #8F00FF;
+    --submit: #016ABC;
 }
 
 /* Reset cơ bản */
@@ -96,4 +97,13 @@ ul {
 
 .hidden {
     display: none; 
+}
+
+button {
+    height: 4.2rem;
+    background-color: var(--submit);
+    color: var(--white);
+    border-radius: 1.5rem;
+    padding: 1rem;
+    border: none;
 }

@@ -7,7 +7,8 @@
     margin-bottom: 2rem;
     border: 0.1rem solid #333;
     border-radius: 1.5rem;
-    padding: 2rem 1rem 1rem;
+    padding: 3rem 1rem 1rem;
+    scroll-margin-top: 7rem;
 } 
 
 .lesson__title {
@@ -30,9 +31,26 @@
 .lesson_words {
     display: flex;
     flex-wrap: wrap; 
-    gap: 8px;        
+    gap: 0.8rem;        
     margin-top: 10px;
-    width: 40rem;
+    width: 68.2rem;
+}
+
+#info {
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+#info__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.page__info {
+    font-size: 2.4rem;
+    color: #000;
 }
 
 .lesson__word {
@@ -42,4 +60,6 @@
     border-radius: 4px;
     font-size: 14px;
     border: 1px solid #ddd;
+    width: 13rem;
+    text-align: center;
 }

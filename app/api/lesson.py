@@ -1,11 +1,10 @@
 import os
 import json
-from flask import Blueprint, jsonify
-
-api_bp = Blueprint('api', __name__, url_prefix='/api')
+from flask import jsonify
+from app.api import api_bp
 
 # 1. Xác định đường dẫn tuyệt đối đến file lessons.json dựa trên vị trí của file code này
-# __file__ là đường dẫn của file python hiện tại. 
+# __file__ là đường dẫn của file python hiện tại.
 # Thay đổi số lượng os.path.dirname tùy thuộc vào cấu trúc thư mục thực tế của bạn.
 current_dir = os.path.dirname(os.path.abspath(__file__))
 

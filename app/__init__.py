@@ -1,16 +1,13 @@
+import importlib
 from pathlib import Path
 from flask import Flask
-from config import Config
 from flask_mysqldb import MySQL
 
-# Tạo đối tượng MySQL toàn cục ở đây để file routes có thể dùng ké
+base_dir = Path(__file__).resolve().parent
 mysql = MySQL()
 
 def create_app():
-    base_dir = Path(__file__).resolve().parent
     app = Flask(__name__, template_folder=str(base_dir / "templates"), static_folder=str(base_dir / "static"))
-
-    # Nạp các cấu hình cứng cho MySQL (Cổng 3307 theo XAMPP của bạn)
     app.secret_key = 'your_secret_key'
     app.config['MYSQL_HOST'] = 'localhost'
     app.config['MYSQL_USER'] = 'root'
@@ -21,15 +18,16 @@ def create_app():
     # Khởi tạo mysql với ứng dụng
     mysql.init_app(app)
 
-    # Đăng ký Blueprint (Luồng xử lý route)
     from app.routes import main_bp
     app.register_blueprint(main_bp)
 
-    # Đăng ký API blueprint từ lesson.py
-    try:
-        from app.api.lesson import api_bp
-        app.register_blueprint(api_bp)
-    except ImportError:
-        pass
+    from app.api import api_bp
+
+    # Import các module route trước khi đăng ký blueprint để Flask
+    # có thể áp dụng các decorator route đúng thời điểm.
+    importlib.import_module('app.api.lesson')
+    importlib.import_module('app.api.info')
+
+    app.register_blueprint(api_bp)
 
     return app

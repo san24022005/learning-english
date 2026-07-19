@@ -1,26 +1,23 @@
-# Learning English 
+# Learning English
 
 Phiên bản: 1.2.1
 
 ---
 
-Mục tiêu: dự án nhỏ dùng để học và thực hành xây dựng REST API bằng Flask cho phần backend, và sử dụng JavaScript (Fetch API) phía frontend để lấy dữ liệu và hiển thị.
-
-Nội dung README này mô tả cách cài đặt, cấu trúc dự án, API endpoints và cách phát triển mở rộng.
-
-## **Những điểm đã sửa/chuẩn hóa**
-- Tách phần API vào thư mục `app/api` (Blueprint Flask).
-- Thêm helper đọc `words.json` từ `app/data.py`.
-- Frontend bây giờ gọi `GET /api/words` (và các endpoint khác) thay vì gọi trực tiếp JSON Server.
-- Đã loại bỏ các thông tin nhạy cảm (SĐT, mã sinh viên) khỏi file công khai. (Email giữ lại nếu bạn muốn liên hệ.)
+Dự án học tiếng Anh nhỏ dùng Flask cho backend và JavaScript cho frontend. Backend hiện cung cấp:
+- API phục vụ bài học từ file `lessons.json`
+- Trang index hiển thị 5 lesson mỗi trang với phân trang
+- Xác thực đơn giản qua login/logout
 
 ---
 
-## **Yêu cầu**
-- Python 3.10+ (hoặc 3.8+)
-- `pip` để cài package
+## Yêu cầu
 
-## **Cài đặt nhanh (local)**
+- Python 3.8+
+- Pip
+- MySQL (XAMPP) nếu bạn dùng tính năng đăng nhập/đăng ký
+
+## Cài đặt nhanh
 
 Windows (PowerShell):
 
@@ -40,135 +37,110 @@ pip install -r requirements.txt
 python run.py
 ```
 
-Mở trình duyệt: http://localhost:5000/
+Mở trình duyệt: `http://localhost:5000/`
 
 ---
 
-## **Cấu trúc chính của dự án**
+## Cấu trúc dự án
 
-- `run.py` — entrypoint để chạy Flask app
-- `words.json` — dữ liệu từ vựng mẫu (tĩnh)
-- `app/` — package Flask
-    - `__init__.py` — tạo app và đăng ký Blueprints
-    - `routes.py` — route phục vụ frontend (template)
-    - `data.py` — helper đọc `words.json`
-    - `api/words.py` — Blueprint REST API (các endpoint)
-    - `static/` — CSS, JS, images
-    - `templates/` — HTML templates
-
----
-
-## **API (REST) — Endpoints**
-
-Tất cả các endpoint bắt đầu bằng tiền tố `/api` (Blueprint `api_bp`).
-
-- `GET /api/words`
-    - Mô tả: trả về danh sách tất cả từ vựng (JSON array).
-    - Ví dụ:
-        ```bash
-        curl http://localhost:5000/api/words
-        ```
-
-- `GET /api/words/<id>`
-    - Mô tả: lấy chi tiết một từ theo `id`.
-    - Ví dụ:
-        ```bash
-        curl http://localhost:5000/api/words/1
-        ```
-
-- `GET /api/quiz`
-    - Mô tả: trả về một từ ngẫu nhiên đã bị xáo trộn (scrambled) cùng `meaning` và `id`.
-    - Ví dụ:
-        ```bash
-        curl http://localhost:5000/api/quiz
-        ```
-
-- `POST /api/check`
-    - Mô tả: kiểm tra đáp án. Gửi body JSON: `{ "id": <number>, "answer": "..." }`.
-    - Trả về JSON `{ "is_correct": true|false, "message": "..." }`.
-    - Ví dụ:
-        ```bash
-        curl -X POST http://localhost:5000/api/check -H "Content-Type: application/json" -d '{"id":1, "answer":"apple"}'
-        ```
+- `run.py` — entrypoint Flask
+- `lessons.json` — dữ liệu bài học
+- `app/`
+  - `__init__.py` — tạo app và đăng ký blueprint
+  - `routes.py` — route frontend và login/logout/register
+  - `api/` — REST API endpoints
+    - `__init__.py` — shared `api_bp`
+    - `lesson.py` — lesson endpoints
+    - `info.py` — session info endpoint
+  - `static/` — CSS, JS, images
+  - `templates/` — HTML templates
+- `tests/` — kiểm thử đơn giản
 
 ---
 
-## **Frontend**
+## API hiện tại
 
-Frontend dùng file template `app/templates/index.html` và script `app/static/js/load-words.js`.
-- Khi trang được load, `load-words.js` sẽ gọi `/api/words` (fetch) và hiển thị từ ngẫu nhiên cho người dùng.
+Tất cả endpoint bắt đầu bằng `/api`.
 
-Nếu bạn muốn chuyển sang gọi `GET /api/quiz` thay vì lấy toàn bộ `words`, sửa `load-words.js` để gọi endpoint đó.
+- `GET /api/lessons`
+  - Trả về toàn bộ danh sách lesson từ `lessons.json`.
+  - Response mẫu:
+    ```json
+    {
+      "success": true,
+      "total_lessons": 126,
+      "data": [ ... ]
+    }
+    ```
 
----
+- `GET /api/lesson/<lesson_id>`
+  - Trả về bài học cụ thể theo `lesson_id`.
+  - Ví dụ: `GET /api/lesson/1`
 
-## **Thêm/Chỉnh sửa dữ liệu từ vựng**
-
-File dữ liệu chính là `words.json`. Mỗi mục là object với cấu trúc:
-
-```json
-{
-    "id": 1,
-    "word": "apple",
-    "meaning": "Quả táo"
-}
-```
-
-Bạn có thể thêm/bớt chỉnh trực tiếp file này; khi thay đổi, server Flask cần khởi động lại để load dữ liệu mới (do hiện tại helper đọc file trên mỗi request — nếu muốn tối ưu, có thể cache hoặc kết nối DB).
-
----
-
-## **CORS / Truy cập từ domain khác**
-
-Hiện tại API và frontend được phục vụ từ cùng một Flask app (cùng origin), nên không cần cấu hình CORS. Nếu bạn tách frontend ra host ở origin khác, cài thêm `flask-cors`:
-
-```bash
-pip install flask-cors
-```
-
-Và đăng ký trong `app/__init__.py`:
-
-```python
-from flask_cors import CORS
-app = Flask(__name__)
-CORS(app)
-```
+- `GET /api/info`
+  - Trả về thông tin người dùng hiện tại nếu đã login.
+  - Response mẫu:
+    ```json
+    {
+      "success": true,
+      "username": "...",
+      "level": 1
+    }
+    ```
 
 ---
 
-## **Phát triển & Mở rộng**
+## Frontend
 
-- Để thêm API mới, tạo file mới trong `app/api` và khai báo Blueprint, sau đó `app.register_blueprint()` trong `create_app()` (`app/__init__.py`).
-- Khi dự án lớn hơn, cân nhắc dùng database (SQLite/Postgres) thay vì file JSON.
-- Dự án đã có thêm 3 thư mục mới cho hướng phát triển AI/ML:
-  - `tests/` — chứa các bài kiểm thử đơn giản cho mô hình.
-  - `data/` — nơi lưu dữ liệu huấn luyện và dữ liệu chuẩn bị.
-  - `preprocessing/` — chứa mô hình và tiền xử lý dữ liệu đơn giản.
-- Endpoint mới: `GET /api/recommend` dùng mô hình AI nhẹ để gợi ý từ phù hợp với mức độ học viên.
+- Trang chính là `app/templates/index.html`.
+- Script `app/static/js/load-lesson.js` gọi `GET /api/lessons` và hiển thị 5 lesson mỗi trang.
+- Nút `« Trước` và `Tiếp »` điều hướng trang.
+- Level hiện tại của người dùng được lấy từ session và đưa vào trang để xác định page ban đầu.
 
 ---
 
-## **Chạy tests / kiểm thử nhanh**
+## Login / Session
 
-Bạn có thể kiểm thử các endpoint bằng `curl` hoặc Postman.
-
-Ví dụ kiểm tra quiz và check:
-
-```bash
-curl http://localhost:5000/api/quiz
-curl -X POST http://localhost:5000/api/check -H "Content-Type: application/json" -d '{"id":1,"answer":"apple"}'
-```
+- `app/routes.py` xử lý login, logout, register.
+- `session['loggedin']` và `session['level']` được dùng để xác thực và xác định level.
+- Endpoint `GET /api/info` trả về `username` và `level` khi session hợp lệ.
 
 ---
 
-## **Góp ý & Liên hệ**
+## Chỉnh sửa dữ liệu bài học
+
+- Dữ liệu bài học chính là `lessons.json`.
+- Mỗi lesson chứa trường `lesson` và `questions`.
+- Thay đổi file này cần khởi động lại server để cập nhật dữ liệu nếu dùng cache nhớ.
+
+---
+
+## Cần sửa nếu muốn mở rộng
+
+- Nếu muốn xài thêm API mới, tạo file mới trong `app/api` và dùng `api_bp` chung.
+- Nếu muốn dùng DB thay vì JSON, chuyển `lessons.json` sang database và viết query tương ứng.
+- Nếu muốn hiển thị thêm thông tin lesson, cập nhật `app/static/js/load-lesson.js` và template `index.html`.
+
+---
+
+## Gợi ý kiểm thử nhanh
+
+- Kiểm tra API lesson:
+  ```bash
+  curl http://localhost:5000/api/lessons
+  curl http://localhost:5000/api/lesson/1
+  ```
+- Kiểm tra info nếu đã login:
+  ```bash
+  curl http://localhost:5000/api/info
+  ```
+
+---
+
+## Liên hệ
 
 - Tác giả: Siu San
 - Email: siusan2005@gmail.com
-
----
-
-## **License**
 
 
 

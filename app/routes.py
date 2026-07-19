@@ -17,15 +17,29 @@ def get_db():
 
 @main_bp.route('/index')
 def home():
-    return render_template('index.html')
+
+    if 'loggedin' not in session or 'level' not in session:
+        return redirect(url_for('main.login'))
+    
+    level = session.get('level', 1)
+    
+    return render_template(
+        'index.html',
+        level=level
+    )
 
 @main_bp.route('/')
 def index():
-    # KIỂM TRA SESSION: Nếu chưa đăng nhập thì bắt quay lại trang login
-    if 'loggedin' not in session:
+
+    if 'loggedin' not in session or 'level' not in session:
         return redirect(url_for('main.login'))
+    
+    level = session.get('level', 1)
         
-    return render_template('index.html', username=session.get('username'))
+    return render_template(
+        'index.html',
+        level=level
+    )
 
 @main_bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -46,13 +60,17 @@ def login():
             session['loggedin'] = True
             session['id'] = account['id']
             session['username'] = account['username']
+            session['level'] = account['level']
             
             # ĐĂNG NHẬP XONG -> CHUYỂN HƯỚNG RA TRANG CHỦ (Tên blueprint.tên hàm)
             return redirect(url_for('main.index'))
         else:
             msg = 'Incorrect username/password!'
             
-    return render_template('login.html', msg=msg) # Bỏ chữ auth/ đi vì file của bạn nằm ở thư mục gốc templates
+    return render_template(
+        'login.html',
+        msg=msg
+    ) 
 
 @main_bp.route('/logout')
 def logout():
@@ -98,7 +116,9 @@ def register():
 @main_bp.route('/navbar.html')
 def navbar():
     # Flask sẽ tìm file navbar.html trong thư mục 'templates' và trả về cho JavaScript
-    return render_template('navbar.html')
+    return render_template(
+        'navbar.html'
+        )
 
 @main_bp.route('/about')
 def about():

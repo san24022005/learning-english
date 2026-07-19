@@ -36,7 +36,7 @@
 
             <div class="auth__user auth__item">
                  <div class="username">
-                        SANiuoi
+                        {{ session.get('username') }}
                 </div>
 
                 <div class="logout__container btn-auth">
@@ -46,16 +46,6 @@
                 </div>
             </div>
                
-        </div>
-
-        <div class="auth__group hidden" style="display: none;">
-            <div class="auth__item btn-auth">
-                <a href="/register">Register</a>
-            </div>
-
-            <div class="auth__item btn-auth">
-                <a href="/login">Login</a>
-            </div>
         </div>
 
     </div>
